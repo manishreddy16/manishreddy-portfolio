@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-ink-line;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 15% 0%, rgba(180, 73, 31, 0.05), transparent),
+      radial-gradient(ellipse 50% 35% at 100% 15%, rgba(43, 68, 54, 0.05), transparent);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: #B4491F;
+    color: #F6F2E9;
+  }
+  a, button {
+    @apply outline-none;
+  }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid #B4491F;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-14;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-grain {
+    background-image: theme('backgroundImage.grain');
+  }
+  .num-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* editorial scrollbar */
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: #F6F2E9; }
+::-webkit-scrollbar-thumb { background: #DCD2B8; border-radius: 0; border: 3px solid #F6F2E9; }
+::-webkit-scrollbar-thumb:hover { background: #B4491F; }
+
+/* marquee */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-scroll 32s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
